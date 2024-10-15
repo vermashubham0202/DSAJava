@@ -105,6 +105,29 @@ public class SinglyLinkedList {
         return tempNode;
     }
 
+    public boolean isSearchKeyPresent(int key) {
+        Node currentNode = head;
+
+        while (currentNode != null) {
+            if(currentNode.data == key) {
+                return true;
+            }
+            currentNode = currentNode.next;
+        }
+        return false;
+    }
+
+    public int lengthOfLinkedList() {
+        Node tempNode = head;
+        int count = 0;
+
+        while (tempNode != null) {
+            count++;
+            tempNode = tempNode.next;
+        }
+        return count;
+    }
+
     public void display() {
         Node tempNode = head;
 
@@ -117,17 +140,6 @@ public class SinglyLinkedList {
             }
             System.out.println("null");
         }
-    }
-
-    public int lengthOfLinkedList() {
-        Node tempNode = head;
-        int count = 0;
-
-        while (tempNode != null) {
-            count++;
-            tempNode = tempNode.next;
-        }
-        return count;
     }
 
     public static void main(String[] args) {
@@ -150,6 +162,9 @@ public class SinglyLinkedList {
 //        System.out.println("Deleted Node is: " + singlyLinkedList.deleteNodeAtPosition(3).data);
 
 //        System.out.println("Length of Singly Linked List: " + singlyLinkedList.lengthOfLinkedList());
+
+//        int key = 16;
+//        System.out.println("Is search key " + key + " present in list: " + singlyLinkedList.isSearchKeyPresent(16));
 
         System.out.println("--- After Operation ---");
         singlyLinkedList.display();
