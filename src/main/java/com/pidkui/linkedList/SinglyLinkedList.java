@@ -86,6 +86,25 @@ public class SinglyLinkedList {
         return currentNode;
     }
 
+    public Node deleteNodeAtPosition(int position) {
+        Node previousNode = head;
+
+        if(position == 1) {
+            head = head.next;
+            return previousNode;
+        }
+
+        int count = 1;
+        while (count < position - 1) {
+            previousNode = previousNode.next;
+            count++;
+        }
+        Node tempNode = previousNode.next;
+        previousNode.next = tempNode.next;
+        tempNode.next = null;
+        return tempNode;
+    }
+
     public void display() {
         Node tempNode = head;
 
@@ -118,19 +137,21 @@ public class SinglyLinkedList {
         singlyLinkedList.insertNode(5);
         singlyLinkedList.insertNode(7);
         singlyLinkedList.insertNode(16);
-
-        singlyLinkedList.insertNodeAtStart(2);
-
-        singlyLinkedList.insertNodeAtPosition(5, 18);
-
         singlyLinkedList.display();
 
+//        singlyLinkedList.insertNodeAtStart(2);
+
+//        singlyLinkedList.insertNodeAtPosition(5, 18);
+
 //        System.out.println("Deleted Last Node is: " + singlyLinkedList.deleteLastNode().data);
-//        singlyLinkedList.display();
 
 //        System.out.println("Deleted First Node is: " + singlyLinkedList.deleteFirstNode().data);
-//        singlyLinkedList.display();
 
-        System.out.println("Length of Singly Linked List: " + singlyLinkedList.lengthOfLinkedList());
+//        System.out.println("Deleted Node is: " + singlyLinkedList.deleteNodeAtPosition(3).data);
+
+//        System.out.println("Length of Singly Linked List: " + singlyLinkedList.lengthOfLinkedList());
+
+        System.out.println("--- After Operation ---");
+        singlyLinkedList.display();
     }
 }
