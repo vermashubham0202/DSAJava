@@ -1,9 +1,9 @@
 package com.pidkui.linkedList.questions;
 
-public class ReverseSinglyLinkedList {
+public class MiddleNodeSinglyLinkedList {
     Node head;
 
-    public ReverseSinglyLinkedList() {
+    public MiddleNodeSinglyLinkedList() {
         head = null;
     }
 
@@ -35,31 +35,28 @@ public class ReverseSinglyLinkedList {
         }
     }
 
-    public void reverseList() {
-        Node previousNode = null;
-        Node currentNode = head;
-        Node nextNode = null;
+    public Node getMiddleNode() {
+        Node slowPointer = head;
+        Node fastPointer = head;
 
-        while (currentNode != null) {
-            nextNode = currentNode.next;
-            currentNode.next = previousNode;
-            previousNode = currentNode;
-            currentNode = nextNode;
+        while (fastPointer != null && fastPointer.next != null) {
+            slowPointer = slowPointer.next;
+            fastPointer = fastPointer.next.next;
         }
-        head = previousNode;
+        return slowPointer;
     }
 
     public static void main(String[] args) {
-        ReverseSinglyLinkedList linkedList = new ReverseSinglyLinkedList();
+        MiddleNodeSinglyLinkedList linkedList = new MiddleNodeSinglyLinkedList();
         linkedList.insertNode(11);
         linkedList.insertNode(8);
         linkedList.insertNode(5);
         linkedList.insertNode(7);
         linkedList.insertNode(16);
+        linkedList.insertNode(2);
+        linkedList.insertNode(18);
         linkedList.display();
 
-        System.out.println("--- After Operation ---");
-        linkedList.reverseList();
-        linkedList.display();
+        System.out.println("Middle Node of list is: " + linkedList.getMiddleNode().data);
     }
 }
