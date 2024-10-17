@@ -1,4 +1,4 @@
-package com.pidkui.linkedList.questions;
+package com.pidkui.linkedList.questionsSinglyLinkedList;
 
 class Node {
     int data;
