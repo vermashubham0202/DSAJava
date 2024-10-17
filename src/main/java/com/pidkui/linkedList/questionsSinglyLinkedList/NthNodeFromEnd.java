@@ -36,6 +36,14 @@ public class NthNodeFromEnd {
     }
 
     public Node nodeFromEnd(int position) {
+        if(head == null) {
+            return null;
+        }
+
+        if(position <= 0) {
+            throw new IllegalArgumentException("Invalid input!");
+        }
+
         Node slowPointer = head;
         Node fastPointer = head;
 
