@@ -49,6 +49,9 @@ public class NthNodeFromEnd {
 
         int count = 1;
         while (count < position) {
+            if(fastPointer.next == null) {
+                throw new IllegalArgumentException("position " + position + " is greater than the number of nodes in list.");
+            }
             fastPointer = fastPointer.next;
             count++;
         }
