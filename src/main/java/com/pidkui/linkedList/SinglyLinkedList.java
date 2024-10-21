@@ -43,7 +43,7 @@ public class SinglyLinkedList {
     public void insertNodeAtPosition(int position, int data) {
         Node newNode = new Node(data);
 
-        if(position == 1) {
+        if (position == 1) {
             newNode.next = head;
             head = newNode;
         } else {
@@ -59,7 +59,7 @@ public class SinglyLinkedList {
     }
 
     public Node deleteFirstNode() {
-        if(head == null) {
+        if (head == null) {
             return null;
         }
         Node tempNode = head;
@@ -69,7 +69,7 @@ public class SinglyLinkedList {
     }
 
     public Node deleteLastNode() {
-        if(head == null || head.next == null) {
+        if (head == null || head.next == null) {
             Node tempNode = head;
             head = null;
             return tempNode;
@@ -88,7 +88,7 @@ public class SinglyLinkedList {
     public Node deleteNodeAtPosition(int position) {
         Node previousNode = head;
 
-        if(position == 1) {
+        if (position == 1) {
             head = head.next;
             return previousNode;
         }
@@ -104,11 +104,31 @@ public class SinglyLinkedList {
         return tempNode;
     }
 
+    public void deleteKey(int key) {
+        Node currentNode = head;
+        Node previousNode = null;
+
+        if (currentNode != null && currentNode.data == key) {
+            head = currentNode.next;
+            return;
+        }
+
+        while (currentNode != null && currentNode.data != key) {
+            previousNode = currentNode;
+            currentNode = currentNode.next;
+        }
+
+        if (currentNode == null) {
+            return;
+        }
+        previousNode.next = currentNode.next;
+    }
+
     public boolean isSearchKeyPresent(int key) {
         Node currentNode = head;
 
         while (currentNode != null) {
-            if(currentNode.data == key) {
+            if (currentNode.data == key) {
                 return true;
             }
             currentNode = currentNode.next;
@@ -164,6 +184,8 @@ public class SinglyLinkedList {
 
 //        int key = 16;
 //        System.out.println("Is search key " + key + " present in list: " + singlyLinkedList.isSearchKeyPresent(16));
+
+//        singlyLinkedList.deleteKey(5);
 
         System.out.println("--- After Operation ---");
         singlyLinkedList.display();
