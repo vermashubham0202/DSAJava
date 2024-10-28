@@ -42,13 +42,12 @@ public class AddTwoNumbers {
         Node dummy = new Node(0);
         Node tailNode = dummy;
         int carry = 0;
-        int sum = 0;
 
         while (head1 != null || head2 != null) {
 
             int digit1 = (head1 != null) ? head1.data : 0;
             int digit2 = (head2 != null) ? head2.data : 0;
-            sum = digit1 + digit2 + carry;
+            int sum = digit1 + digit2 + carry;
             carry = sum / 10;
             tailNode.next = new Node(sum % 10);
             tailNode = tailNode.next;
