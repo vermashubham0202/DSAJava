@@ -46,6 +46,40 @@ public class DoublyLinkedList {
         listLength++;
     }
 
+    private ListNode deleteFirstNode() {
+        if (isEmpty()) {
+            return null;
+        }
+
+        ListNode tempNode = head;
+        if (head == tail) {
+            tail = null;
+        } else {
+            head.next.previous = null;
+        }
+        head = head.next;
+        tempNode.next = null;
+        listLength--;
+        return tempNode;
+    }
+
+    private ListNode deleteLastNode() {
+        if (isEmpty()) {
+            return null;
+        }
+
+        ListNode tempNode = tail;
+        if (head == tail) {
+            head = null;
+        } else {
+            tail.previous.next = null;
+        }
+        tail = tail.previous;
+        tempNode.previous = null;
+        listLength--;
+        return tempNode;
+    }
+
     private boolean isEmpty() {
 //        return head == null;
         return listLength == 0;
@@ -89,11 +123,30 @@ public class DoublyLinkedList {
         linkedList.insertNode(10);
         linkedList.insertNode(15);
         linkedList.insertNode(25);
-        linkedList.insertNodeAtStart(45);
 
         System.out.println("Forward Traverse:");
         linkedList.display();
-        System.out.println("Backward Traverse:");
-        linkedList.displayReverse();
+
+//        System.out.println("Backward Traverse:");
+//        linkedList.displayReverse();
+
+//        linkedList.insertNodeAtStart(45);
+
+//        ListNode deletedNode = linkedList.deleteFirstNode();
+//        if(deletedNode == null) {
+//            System.out.println("List is empty.");
+//        } else {
+//            System.out.println("Deleted node is: " + deletedNode.data);
+//        }
+
+//        ListNode deletedNode = linkedList.deleteLastNode();
+//        if (deletedNode == null) {
+//            System.out.println("List is empty.");
+//        } else {
+//            System.out.println("Deleted node is: " + deletedNode.data);
+//        }
+
+        System.out.println("--- After Operation ---");
+        linkedList.display();
     }
 }
