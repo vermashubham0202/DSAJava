@@ -35,13 +35,30 @@ public class CircularSinglyLinkedList {
     private void insertNodeAtStart(int data) {
         CListNode newNode = new CListNode(data);
 
-        if(isEmpty()) {
+        if (isEmpty()) {
             last = newNode;
         } else {
             newNode.next = last.next;
         }
         last.next = newNode;
         listLength++;
+    }
+
+    private CListNode deleteFirstNode() {
+
+        if (isEmpty()) {
+            return null;
+        }
+
+        CListNode firstNode = last.next;
+        if (last.next == last) {
+            last = null;
+        } else {
+            last.next = firstNode.next;
+        }
+        firstNode.next = null;
+        listLength--;
+        return firstNode;
     }
 
     private int getListLength() {
@@ -77,6 +94,13 @@ public class CircularSinglyLinkedList {
 
 
 //        linkedList.insertNodeAtStart(2);
+
+//        CListNode deletedNode = linkedList.deleteFirstNode();
+//        if (deletedNode == null) {
+//            System.out.println("List is empty.");
+//        } else {
+//            System.out.println("Deleted node is: " + deletedNode.data);
+//        }
 
         System.out.println("--- After Operation ---");
         linkedList.display();
