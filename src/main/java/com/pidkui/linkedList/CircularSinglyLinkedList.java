@@ -1,16 +1,16 @@
 package com.pidkui.linkedList;
 
-class DataNode {
+class CListNode {
     int data;
-    DataNode next;
+    CListNode next;
 
-    public DataNode(int data) {
+    public CListNode(int data) {
         this.data = data;
     }
 }
 
 public class CircularSinglyLinkedList {
-    DataNode last;
+    CListNode last;
     int listLength;
 
     public CircularSinglyLinkedList() {
@@ -19,7 +19,7 @@ public class CircularSinglyLinkedList {
     }
 
     private void insertNode(int data) {
-        DataNode newNode = new DataNode(data);
+        CListNode newNode = new CListNode(data);
 
         if (isEmpty()) {
             last = newNode;
@@ -29,6 +29,18 @@ public class CircularSinglyLinkedList {
             last.next = newNode;
             last = newNode;
         }
+        listLength++;
+    }
+
+    private void insertNodeAtStart(int data) {
+        CListNode newNode = new CListNode(data);
+
+        if(isEmpty()) {
+            last = newNode;
+        } else {
+            newNode.next = last.next;
+        }
+        last.next = newNode;
         listLength++;
     }
 
@@ -45,7 +57,7 @@ public class CircularSinglyLinkedList {
         if (last == null) {
             System.out.println("List is empty!");
         } else {
-            DataNode tempNode = last.next;
+            CListNode tempNode = last.next;
             while (tempNode != last) {
                 System.out.print(tempNode.data + " --> ");
                 tempNode = tempNode.next;
@@ -61,7 +73,12 @@ public class CircularSinglyLinkedList {
         linkedList.insertNode(15);
         linkedList.insertNode(20);
         linkedList.insertNode(25);
+        linkedList.display();
 
+
+//        linkedList.insertNodeAtStart(2);
+
+        System.out.println("--- After Operation ---");
         linkedList.display();
     }
 }
