@@ -17,7 +17,7 @@ public class StackUsingArray {
     }
 
     private void push(int data) {
-        if (top + 1 == stack.length) {
+        if (isFull()) {
             throw new RuntimeException("Can't insert: " + data + ", Stack is full!");
         }
         top++;
@@ -25,7 +25,7 @@ public class StackUsingArray {
     }
 
     private int pop() {
-        if (top < 0) {
+        if (isEmpty()) {
             throw new EmptyStackException();
         }
         int popValue = stack[top];
@@ -34,7 +34,22 @@ public class StackUsingArray {
     }
 
     private int peek() {
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
         return stack[top];
+    }
+
+    private boolean isFull() {
+        return stack.length == getStackSize();
+    }
+
+    private boolean isEmpty() {
+        return top < 0;
+    }
+
+    private int getStackSize() {
+        return top + 1;
     }
 
     public static void main(String[] args) {
