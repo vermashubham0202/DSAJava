@@ -24,6 +24,10 @@ Post-Order Traversal:
     * Traversal Order: Left → Right → Root
  */
 
+import com.sun.source.tree.Tree;
+
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class BinaryTree {
@@ -138,6 +142,26 @@ public class BinaryTree {
         }
     }
 
+    private void levelOrderTraversal() {
+        if (root == null) {
+            return;
+        }
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+
+        while (!queue.isEmpty()) {
+            TreeNode tempNode = queue.poll();
+            System.out.print(tempNode.data + " ");
+            if (tempNode.left != null) {
+                queue.offer(tempNode.left);
+            }
+            if (tempNode.right != null) {
+                queue.offer(tempNode.right);
+            }
+        }
+    }
+
     public static void main(String[] args) {
         BinaryTree binaryTree = new BinaryTree();
         binaryTree.createBinaryTree();
@@ -165,6 +189,10 @@ public class BinaryTree {
 
         System.out.println("PostOrder Traversal (Iterative):");
         binaryTree.iterativePostOrderTraversal();
+        System.out.println();
+
+        System.out.println("Level Order Traversal:");
+        binaryTree.levelOrderTraversal();
         System.out.println();
     }
 }
