@@ -34,6 +34,26 @@ public class BinarySearchTree {
         return root;
     }
 
+    private boolean isSearchKeyPresent(int key) {
+        TreeNode tempNode = root;
+        tempNode = searchKey(tempNode, key);
+        if (tempNode == null) {
+            return false;
+        }
+        return true;
+    }
+
+    private TreeNode searchKey(TreeNode root, int key) {
+        if (root == null || root.data == key) {
+            return root;
+        }
+        if (key < root.data) {
+            return searchKey(root.left, key);
+        } else {
+            return searchKey(root.right, key);
+        }
+    }
+
     // when we do In-Order traversal of BST,
     // then the values will be printed in sorted format
     private void recursiveInOrderTraversal(TreeNode root) {
@@ -47,13 +67,22 @@ public class BinarySearchTree {
 
     public static void main(String[] args) {
         BinarySearchTree binarySearchTree = new BinarySearchTree();
-        binarySearchTree.insert(5);
+        binarySearchTree.insert(6);
         binarySearchTree.insert(4);
-        binarySearchTree.insert(7);
-        binarySearchTree.insert(2);
         binarySearchTree.insert(8);
+        binarySearchTree.insert(2);
+        binarySearchTree.insert(5);
+        binarySearchTree.insert(7);
+        binarySearchTree.insert(9);
 
-        System.out.println("PreOrder Traversal:");
+        System.out.println("InOrder Traversal:");
         binarySearchTree.recursiveInOrderTraversal(binarySearchTree.root);
+        System.out.println();
+
+        int searchKey1 = 10;
+        System.out.println("Is search key " + searchKey1 + " present? : " + binarySearchTree.isSearchKeyPresent(searchKey1));
+
+        int searchKey2 = 5;
+        System.out.println("Is search key " + searchKey2 + " present? : " + binarySearchTree.isSearchKeyPresent(searchKey2));
     }
 }
