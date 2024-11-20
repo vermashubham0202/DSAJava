@@ -35,9 +35,7 @@ public class BinarySearchTree {
     }
 
     private boolean isSearchKeyPresent(int key) {
-        TreeNode tempNode = root;
-        tempNode = searchKey(tempNode, key);
-        if (tempNode == null) {
+        if (searchKey(root, key) == null) {
             return false;
         }
         return true;
